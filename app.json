@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "Skyshowng",
+    "slug": "skyshowng",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/SkyshowAPPicon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/images/splash--new.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#020817"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you use them on your profile."
+        }
+      ]
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/SkyshowAPPicon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "skyshow.ng",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png"
+    },
+    "owner": "miraclemarcel",
+    "extra": {
+      "eas": {
+        "projectId": "44134cd3-9832-4c04-94a8-30340726e885"
+      }
+    }
+  }
+}
