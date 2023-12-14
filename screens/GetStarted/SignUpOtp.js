@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { StatusBar, View, ActivityIndicator } from "react-native";
+import React, { useState } from "react";
+import { StatusBar, ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Formik } from "formik";
 import { useTheme } from "../../contexts/theme.context";
@@ -16,21 +16,16 @@ import {
   SignupOtpText,
   MsgBox,
 } from "../../styles/styles";
-import { useAuthentication } from "../../contexts/auth.context";
 
 const { inputPlaceholder, backgroundColor } = Colors;
 
 const SignUpOtp = ({ navigation }) => {
-  const { verify, loading } = useAuthentication();
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState({ name: "", balance: "" });
   const { theme } = useTheme();
 
-  const handleSubmit = async ({ otp }, { setFieldError }) => {
-    await verify(otp, () =>
-      navigation.navigate("MainContent"),
-      err => setFieldError('otp', err.message)
-    );
+  const handleSubmit = async () => {
+      navigation.navigate("MainContent")
   };
 
   return (
@@ -42,20 +37,16 @@ const SignUpOtp = ({ navigation }) => {
             <SignupOtpText>Enter the OTP that was sent to you!</SignupOtpText>
           </SignupOtpContent>
           <Formik
-            initialValues={{ otp: "" }}
             onSubmit={handleSubmit}
           >
-            {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
+            {({  handleSubmit, values, errors }) => (
               <StyledFormArea>
                 <StyledTextInput
                   placeholder="* * * * * *"
                   placeholderTextColor={inputPlaceholder}
-                  onChangeText={handleChange("otp")}
-                  onBlur={handleBlur("otp")}
-                  value={values.otp}
                   keyboardType="numeric"
                 />
-                {errors.otp && <MsgBox>{errors.otp}</MsgBox>}
+                
 
                 <StyledButton
                   onPress={handleSubmit}

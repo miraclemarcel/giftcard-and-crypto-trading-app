@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { StatusBar, View, Alert, ActivityIndicator } from "react-native";
+import { StatusBar, ActivityIndicator } from "react-native";
 import RadioForm from "react-native-simple-radio-button";
 import { useNavigation } from "@react-navigation/native";
-import axios from "axios";
 import { useTheme } from "../../contexts/theme.context";
-
-// const client = new WebSocket ("ws://https://9e8b-102-88-35-220.ngrok-free.app:8080");
 
 import {
   StyledContainer,
@@ -15,7 +12,6 @@ import {
   SignupOtpText,
   SignupOtpContent,
 } from "../../styles/styles";
-import { verifyEmailAndNumber } from "../../util/auth";
 
 const SignUpAuth = ({ route }) => {
   const [loading, setLoading] = useState(false);
@@ -23,10 +19,6 @@ const SignUpAuth = ({ route }) => {
   const { theme } = useTheme();
 
   const { email, phoneNumber } = route.params;
-
-  // const phoneNumber = credentials.phoneNumber;
-  // const email = credentials.email;
-  // console.log(phoneNumber, email);
 
   const options = [
     { label: `Number: ${phoneNumber}`, value: "Number" },
@@ -43,31 +35,8 @@ const SignUpAuth = ({ route }) => {
     }
   }, [phoneNumber, email]);
 
-  const sendOTP = async (option) => {
-    try {
-      let response;
-      if (option === "Number") {
-        console.log(option, phoneNumber, "number");
-        verifyEmailAndNumber(option, phoneNumber);
+  const sendOTP = () => {
         navigation.navigate("SignUpOtp", { phoneNumber });
-      }
-
-      if (option === "Email") {
-        console.log(option);
-
-        // Send OTP via email
-        console.log(option, email, "email");
-        await verifyEmailAndNumber("Email", email);
-        // Alert.alert("OTP Sent", "Check your email for the OTP.");
-        navigation.navigate("SignUpOtp", { email });
-      }
-
-      // console.log(response.data);
-    } catch (error) {
-      Alert.alert("Error", "Failed to send code. Please try again.");
-    } finally {
-      setLoading(false);
-    }
   };
 
   return (
@@ -83,7 +52,6 @@ const SignUpAuth = ({ route }) => {
 
         <RadioForm
           radio_props={options}
-          // initial={"Number"}
           onPress={(value) => {
             setChosenOption(value);
           }}
@@ -99,7 +67,7 @@ const SignUpAuth = ({ route }) => {
         <StyledButton
           style={{ marginTop: 20 }}
           onPress={sendOTP.bind(null, chosenOption)}
-          disabled={loading} // Disable the button while loading
+          disabled={loading} 
         >
           {loading ? (
             <ActivityIndicator color="#fff" />
