@@ -14,7 +14,6 @@ import {
   Colors,
   SignupOtpContent,
   SignupOtpText,
-  MsgBox,
 } from "../../styles/styles";
 
 const { inputPlaceholder, backgroundColor } = Colors;
