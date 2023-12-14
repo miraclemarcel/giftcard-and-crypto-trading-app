@@ -1,8 +1,7 @@
 import axios from "axios";
 import store from '@react-native-async-storage/async-storage';
 
-// const baseURL = 'https://skyshow.cyclic.app/api/V1/skyshowNG';
-const baseURL = 'https://skyshow-server.organization.skyshow.ng/api/V1/skyshowNG';
+const baseURL = 'https://tech.com';
 export const api = axios.create({ baseURL });
 
 api.interceptors.request.use(
