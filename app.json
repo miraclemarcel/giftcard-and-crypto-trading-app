@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Skyshowng",
-    "slug": "skyshowng",
+    "name": "TradingApp",
+    "slug": "tradingapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/SkyshowAPPicon.png",
@@ -41,7 +41,7 @@
     "owner": "miraclemarcel",
     "extra": {
       "eas": {
-        "projectId": "44134cd3-9832-4c04-94a8-30340726e885"
+        "projectId": "b4bcb5ab-8a3a-47eb-a9fc-c06f7e30bf19"
       }
     }
   }
